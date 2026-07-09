@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c434fv5334hbt"]
+
+[ext_resource type="Texture2D" uid="uid://dg7ia2dntl75u" path="res://Common/Particles/Art/kenney-white-smoke-texture-cc0.png" id="1_jth0o"]
+[ext_resource type="Script" uid="uid://bsvv6r3w0jyn4" path="res://Common/Particles/Scripts/HitParticle.gd" id="1_o0yjx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0yjx"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_jth0o")
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_s4cfg"]
+material = SubResource("StandardMaterial3D_o0yjx")
+
+[sub_resource type="Curve" id="Curve_50jyo"]
+_data = [Vector2(0.012931034, 0.033707857), 0.0, 0.0, 0, 0, Vector2(0.038793102, 1), -0.30667537, -0.30667537, 0, 0, Vector2(1, 0), -1.0683372, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_kwngj"]
+offsets = PackedFloat32Array(0, 0.0776699, 0.6747573, 1)
+colors = PackedColorArray(2.1118155, 2.1118155, 2.1118155, 0.44313726, 1.8318673, 1.2881633, 0.11491842, 1, 1, 0.53333336, 0, 1, 0, 0, 0, 0.6431373)
+
+[node name="ExplosionParticleA" type="Node3D" unique_id=1937142366 node_paths=PackedStringArray("cpu_particles")]
+script = ExtResource("1_o0yjx")
+cpu_particles = [NodePath("CPUParticles3D")]
+metadata/_custom_type_script = "uid://bsvv6r3w0jyn4"
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1175866869]
+emitting = false
+amount = 4
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.68
+lifetime_randomness = 0.2
+local_coords = true
+mesh = SubResource("QuadMesh_s4cfg")
+emission_shape = 1
+emission_sphere_radius = 0.1
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+angle_min = -360.0
+angle_max = 360.0
+scale_amount_min = 8.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_50jyo")
+color_ramp = SubResource("Gradient_kwngj")

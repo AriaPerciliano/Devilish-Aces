@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://b50ewxiwch3v0"]
+
+[ext_resource type="Script" uid="uid://li4n6wai1pax" path="res://Entities/UI/scripts/target_marker.gd" id="1_jvcid"]
+[ext_resource type="Texture2D" uid="uid://d22u85gly60ui" path="res://Entities/UI/Art/Targeting/air_marker_a.png" id="2_mvj24"]
+[ext_resource type="Texture2D" uid="uid://xbuufw6tie2w" path="res://Entities/UI/Art/Targeting/air_marker_b.png" id="3_b2adb"]
+[ext_resource type="Texture2D" uid="uid://b8l211nmunrds" path="res://Entities/UI/Art/Targeting/air_marker_c.png" id="4_h2ktn"]
+[ext_resource type="LabelSettings" uid="uid://cwrs8ud7ail6c" path="res://Entities/UI/Settings/Label/CombatUIFont.tres" id="4_lexck"]
+[ext_resource type="Texture2D" uid="uid://vnxq3lv05qu6" path="res://Entities/UI/Art/Targeting/air_marker_d.png" id="5_5b3h3"]
+[ext_resource type="Texture2D" uid="uid://bbq33jbcnh06u" path="res://Entities/UI/Art/Targeting/air_marker_e.png" id="6_r35ts"]
+[ext_resource type="Texture2D" uid="uid://dip460icw2m2g" path="res://Entities/UI/Art/Targeting/ground_marker_a.png" id="7_r35ts"]
+[ext_resource type="Texture2D" uid="uid://cetxwpdjoifbg" path="res://Entities/UI/Art/Targeting/ground_marker_b.png" id="8_j67tl"]
+[ext_resource type="Texture2D" uid="uid://8fd45n7sd18p" path="res://Entities/UI/Art/Targeting/ground_marker_c.png" id="9_cd3t1"]
+[ext_resource type="Texture2D" uid="uid://cfi3l3ij3u06" path="res://Entities/UI/Art/Targeting/ground_marker_d.png" id="10_smsfm"]
+[ext_resource type="Texture2D" uid="uid://clkwafkx3bfb8" path="res://Entities/UI/Art/Targeting/ground_marker_e.png" id="11_iy0i1"]
+
+[node name="TargetMarker" type="Control" unique_id=219625353 node_paths=PackedStringArray("marker_texture", "distance_label", "name_label", "type_label", "next_label", "tgt_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 74.0
+offset_bottom = 24.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_jvcid")
+air_a = ExtResource("2_mvj24")
+air_b = ExtResource("3_b2adb")
+air_c = ExtResource("4_h2ktn")
+air_d = ExtResource("5_5b3h3")
+air_e = ExtResource("6_r35ts")
+ground_a = ExtResource("7_r35ts")
+ground_b = ExtResource("8_j67tl")
+ground_c = ExtResource("9_cd3t1")
+ground_d = ExtResource("10_smsfm")
+ground_e = ExtResource("11_iy0i1")
+marker_texture = NodePath("MarkerTexture")
+distance_label = NodePath("VBoxContainer/DistanceLabel")
+name_label = NodePath("VBoxContainer/NameLabel")
+type_label = NodePath("VBoxContainer/TypeLabel")
+next_label = NodePath("VBoxContainer/NextLabel")
+tgt_label = NodePath("VBoxContainer2/TGTLabel")
+metadata/_custom_type_script = "uid://li4n6wai1pax"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=111124815]
+layout_mode = 0
+offset_left = 6.0
+offset_right = 24.0
+offset_bottom = 24.0
+size_flags_horizontal = 8
+theme_override_constants/separation = 1
+
+[node name="TGTLabel" type="Label" parent="VBoxContainer2" unique_id=1056622472]
+visible = false
+layout_mode = 2
+text = "TGT"
+label_settings = ExtResource("4_lexck")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MarkerTexture" type="TextureRect" parent="." unique_id=1177804250]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(12, 12)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_mvj24")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=146556302]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 74.0
+offset_bottom = 24.0
+size_flags_horizontal = 0
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="DistanceLabel" type="Label" parent="VBoxContainer" unique_id=743240155]
+visible = false
+layout_mode = 2
+text = "9999"
+label_settings = ExtResource("4_lexck")
+vertical_alignment = 1
+
+[node name="TypeLabel" type="Label" parent="VBoxContainer" unique_id=379484855]
+visible = false
+layout_mode = 2
+text = "TGTNam"
+label_settings = ExtResource("4_lexck")
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=2032841435]
+visible = false
+layout_mode = 2
+text = "AceName"
+label_settings = ExtResource("4_lexck")
+vertical_alignment = 1
+
+[node name="NextLabel" type="Label" parent="VBoxContainer" unique_id=1037637516]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+text = "NEXT"
+label_settings = ExtResource("4_lexck")
+vertical_alignment = 1

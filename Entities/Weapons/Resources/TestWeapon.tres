@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" format=3 uid="uid://casdrlqfsa40o"]
+
+[ext_resource type="PackedScene" uid="uid://dtbasaevubx7v" path="res://Entities/Weapons/Projectiles/TestProjectile.tscn" id="1_rlau4"]
+[ext_resource type="Script" uid="uid://b0xqae05pj6h1" path="res://Entities/Weapons/Scripts/Weapon.gd" id="1_shmxq"]
+[ext_resource type="AudioStream" uid="uid://d12yqsqsefw1a" path="res://Assets/F4U_MG_FIRE.wav" id="3_n5o5r"]
+
+[resource]
+script = ExtResource("1_shmxq")
+shooting_sfx = ExtResource("3_n5o5r")
+projectile_scene = ExtResource("1_rlau4")
+metadata/_custom_type_script = "uid://b0xqae05pj6h1"

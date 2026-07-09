@@ -1,0 +1,722 @@
+[gd_scene format=3 uid="uid://b4d1ouq1w6cun"]
+
+[ext_resource type="Script" uid="uid://dwgdt0lb44c3h" path="res://Entities/UI/scripts/game_ui.gd" id="1_vk3hd"]
+[ext_resource type="LabelSettings" uid="uid://cwrs8ud7ail6c" path="res://Entities/UI/Settings/Label/CombatUIFont.tres" id="4_41an5"]
+[ext_resource type="Texture2D" uid="uid://cqc8ngv4cxj0" path="res://Entities/UI/Art/AltSpd.png" id="4_i4atj"]
+[ext_resource type="Texture2D" uid="uid://uex6mydmbj57" path="res://Entities/UI/Art/Crosshair.png" id="4_kgakc"]
+[ext_resource type="Texture2D" uid="uid://cfbc1xya5yur8" path="res://Entities/UI/Art/Aim.png" id="4_xr5n0"]
+[ext_resource type="Texture2D" uid="uid://btekmwypca0wq" path="res://Entities/UI/Art/HitMarker.png" id="5_nhr0q"]
+[ext_resource type="Texture2D" uid="uid://crbtiu5xgrh3o" path="res://Entities/UI/Art/AmmoCount.png" id="8_08trn"]
+[ext_resource type="Texture2D" uid="uid://b5dqjeatlulw8" path="res://Entities/UI/Art/CompassOverlayBack.png" id="10_ppuil"]
+[ext_resource type="Texture2D" uid="uid://rs8tg1hxrgsf" path="res://Entities/UI/Art/Compass.png" id="10_r4sjg"]
+[ext_resource type="Texture2D" uid="uid://c1dkrwh878x4" path="res://Entities/UI/Art/CompassOverlay.png" id="11_ppuil"]
+[ext_resource type="Shader" uid="uid://b7umkpoxgyk6r" path="res://Common/Shaders/speedlines.gdshader" id="11_r8kxn"]
+[ext_resource type="Texture2D" uid="uid://bxhw6umu6ks2m" path="res://Entities/UI/Art/ArtificialHorizon/ArtificialHorizonBG.png" id="13_2e0ge"]
+[ext_resource type="Script" uid="uid://dcgt3dae5154x" path="res://Entities/UI/scripts/attitude_meter.gd" id="13_viq3f"]
+[ext_resource type="Texture2D" uid="uid://bqmdj88rd1enu" path="res://Entities/UI/Art/ArtificialHorizon/ArtificialHorizonBack.png" id="14_6xvtg"]
+[ext_resource type="Texture2D" uid="uid://cbq0ny4he8gop" path="res://Entities/UI/Art/Speedometer/MeterBG.png" id="14_b55ur"]
+[ext_resource type="Script" uid="uid://davgjklr8al3l" path="res://Entities/UI/scripts/meter.gd" id="14_v2jhk"]
+[ext_resource type="Texture2D" uid="uid://pwv3382kwemc" path="res://Entities/UI/Art/ArtificialHorizon/ArtificialHorizonOverlay.png" id="14_viq3f"]
+[ext_resource type="Shader" uid="uid://d1m1l45lqt46m" path="res://Entities/UI/scripts/attitude_meter_mask.gdshader" id="15_7aj5q"]
+[ext_resource type="Texture2D" uid="uid://q3swooipjqnp" path="res://Entities/UI/Art/Speedometer/MeterNeedle.png" id="16_ppuil"]
+[ext_resource type="Texture2D" uid="uid://bkmx8qo6bnyld" path="res://Entities/UI/Art/Speedometer/ThrottleBar.png" id="17_3ouj3"]
+[ext_resource type="Texture2D" uid="uid://8brblablbw15" path="res://Entities/UI/Art/Speedometer/SpeedMeterBG.png" id="17_j1hkh"]
+[ext_resource type="Texture2D" uid="uid://c4hrijstpgijg" path="res://Entities/UI/Art/Speedometer/ThrottleBarBG.png" id="17_p38lc"]
+[ext_resource type="Texture2D" uid="uid://cis3jvgiq6l8t" path="res://Entities/UI/Art/Speedometer/AltimeterNumberBG.png" id="17_v2jhk"]
+[ext_resource type="Texture2D" uid="uid://cbqtxutry3obo" path="res://Entities/UI/Art/Speedometer/SpeedometerNumberBG.png" id="18_6xvtg"]
+[ext_resource type="Script" uid="uid://b54mln4yw3xq3" path="res://Entities/UI/scripts/throttle_meter.gd" id="18_axf3a"]
+[ext_resource type="Texture2D" uid="uid://djbcgql6o2sxc" path="res://Entities/UI/Art/Speedometer/MeterNeedle2.png" id="18_ppuil"]
+[ext_resource type="Texture2D" uid="uid://dqivljlcbmi14" path="res://Entities/UI/Art/Speedometer/OdometerNumbers.png" id="22_7aj5q"]
+[ext_resource type="Script" uid="uid://bryomj1visb5a" path="res://Entities/UI/scripts/odometer.gd" id="22_p5y4a"]
+[ext_resource type="Script" uid="uid://boi5fgfq1ngos" path="res://Entities/UI/scripts/odometer_digit.gd" id="23_762l8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_762l8"]
+shader = ExtResource("15_7aj5q")
+shader_parameter/radius = 16.0
+shader_parameter/mask_screen_center = Vector2(500, 300)
+shader_parameter/node_size = Vector2(100, 100)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r8kxn"]
+noise_type = 0
+frequency = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xr5n0"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_r8kxn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xr5n0"]
+shader = ExtResource("11_r8kxn")
+shader_parameter/noise = SubResource("NoiseTexture2D_xr5n0")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_count = 2.0
+shader_parameter/line_density = 0.6000000285
+shader_parameter/line_faloff = 0.800000038
+shader_parameter/mask_size = 0.0
+shader_parameter/mask_edge = 1.0
+shader_parameter/animation_speed = 20.0
+
+[node name="GameUI" type="CanvasLayer" unique_id=568050835 node_paths=PackedStringArray("crosshair", "crosshair_texture", "boresight", "boresight_texture", "hit_indicator", "compass", "compass_strip", "speedometer", "altimeter", "throttle_meter", "attitude_meter", "speed_lines", "debug_ui", "aoa_label")]
+script = ExtResource("1_vk3hd")
+crosshair = NodePath("CanvasLayer/MainUI/Crosshair")
+crosshair_texture = NodePath("CanvasLayer/MainUI/Crosshair/CrosshairText")
+boresight = NodePath("CanvasLayer/MainUI/Boresight")
+boresight_texture = NodePath("CanvasLayer/MainUI/Boresight/CrosshairText")
+hit_indicator = NodePath("CanvasLayer/MainUI/Crosshair/HitIndicator")
+compass = NodePath("CanvasLayer/MainUI/3rdPersonHUD/CentralCompass/Compass")
+compass_strip = NodePath("CanvasLayer/MainUI/3rdPersonHUD/CentralCompass/Compass/CompassStrip")
+speedometer = NodePath("CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer")
+altimeter = NodePath("CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter")
+throttle_meter = NodePath("CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer/ThrottleMeter")
+attitude_meter = NodePath("CanvasLayer/MainUI/3rdPersonHUD/Meters/AttitudeMeter")
+speed_lines = NodePath("SpeedlinesLayer/Control/SpeedLines")
+debug = true
+debug_ui = NodePath("CanvasLayer/MainUI/DebugUI")
+aoa_label = NodePath("CanvasLayer/MainUI/DebugUI/VBoxContainer/aoa_label")
+metadata/_custom_type_script = "uid://dwgdt0lb44c3h"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1547518699]
+layer = 40
+
+[node name="MainUI" type="Control" parent="CanvasLayer" unique_id=1504202596]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DebugUI" type="Control" parent="CanvasLayer/MainUI" unique_id=1969001226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUI/DebugUI" unique_id=1195664689]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 36.0
+offset_right = 62.0
+offset_bottom = 76.0
+
+[node name="aoa_label" type="Label" parent="CanvasLayer/MainUI/DebugUI/VBoxContainer" unique_id=807716903]
+layout_mode = 2
+text = "AoA: 0123456789"
+label_settings = ExtResource("4_41an5")
+
+[node name="Crosshair" type="Control" parent="CanvasLayer/MainUI" unique_id=1062206156]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrosshairText" type="TextureRect" parent="CanvasLayer/MainUI/Crosshair" unique_id=521470971]
+modulate = Color(1, 1, 1, 0.5764706)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xr5n0")
+stretch_mode = 3
+
+[node name="HitIndicator" type="TextureRect" parent="CanvasLayer/MainUI/Crosshair" unique_id=1731232136]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.5
+offset_top = -18.5
+offset_right = 18.5
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(18.5, 18.5)
+texture = ExtResource("5_nhr0q")
+stretch_mode = 5
+
+[node name="Boresight" type="Control" parent="CanvasLayer/MainUI" unique_id=90763776]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrosshairText" type="TextureRect" parent="CanvasLayer/MainUI/Boresight" unique_id=2001850763]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.5
+offset_top = -4.0
+offset_right = 6.5
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_kgakc")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/MainUI" unique_id=410459382]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -32.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MainUI/Control" unique_id=1084769413]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_08trn")
+stretch_mode = 5
+
+[node name="3rdPersonHUD" type="MarginContainer" parent="CanvasLayer/MainUI" unique_id=1902397268]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 6
+
+[node name="CentralCompass" type="Control" parent="CanvasLayer/MainUI/3rdPersonHUD" unique_id=1705019638]
+layout_mode = 2
+
+[node name="Compass" type="Control" parent="CanvasLayer/MainUI/3rdPersonHUD/CentralCompass" unique_id=783754989]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 14.0
+grow_horizontal = 2
+size_flags_vertical = 4
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/CentralCompass/Compass" unique_id=556624953]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_ppuil")
+
+[node name="CompassStrip" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/CentralCompass/Compass" unique_id=668016912]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -3.5
+offset_right = 540.0
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_r4sjg")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/CentralCompass/Compass" unique_id=966303188]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -20.0
+offset_right = 26.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_ppuil")
+stretch_mode = 3
+
+[node name="Counts" type="MarginContainer" parent="CanvasLayer/MainUI/3rdPersonHUD" unique_id=521374188]
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="ScoreCount" type="VBoxContainer" parent="CanvasLayer/MainUI/3rdPersonHUD/Counts" unique_id=965250255]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Counts/ScoreCount" unique_id=1708079034]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_i4atj")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/MainUI/3rdPersonHUD/Counts/ScoreCount/TextureRect" unique_id=1513954522]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE"
+label_settings = ExtResource("4_41an5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/MainUI/3rdPersonHUD/Counts/ScoreCount" unique_id=1646420095]
+layout_mode = 2
+text = "0000"
+label_settings = ExtResource("4_41an5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeCount" type="VBoxContainer" parent="CanvasLayer/MainUI/3rdPersonHUD/Counts" unique_id=945499867]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Counts/TimeCount" unique_id=239616403]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_i4atj")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/MainUI/3rdPersonHUD/Counts/TimeCount/TextureRect" unique_id=154111822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TIME"
+label_settings = ExtResource("4_41an5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/MainUI/3rdPersonHUD/Counts/TimeCount" unique_id=1002346758]
+layout_mode = 2
+text = "00:00.465"
+label_settings = ExtResource("4_41an5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Meters" type="Control" parent="CanvasLayer/MainUI/3rdPersonHUD" unique_id=1597256374]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="AttitudeMeter" type="Control" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters" unique_id=286446170 node_paths=PackedStringArray("attitude_meter", "artificial_horizon")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -55.0
+offset_right = -47.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_viq3f")
+attitude_meter = NodePath("AltimeterOverlay")
+artificial_horizon = NodePath("ArtificialHorizon")
+pitch_zero_offset = -66.0
+metadata/_custom_type_script = "uid://dcgt3dae5154x"
+
+[node name="AltimeterBG" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/AttitudeMeter" unique_id=543270567]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("14_6xvtg")
+
+[node name="ArtificialHorizon" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/AttitudeMeter" unique_id=673462807]
+material = SubResource("ShaderMaterial_762l8")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -49.5
+offset_right = 49.5
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("13_2e0ge")
+
+[node name="AltimeterOverlay" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/AttitudeMeter" unique_id=1892389498]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(16, 16)
+texture = ExtResource("14_viq3f")
+
+[node name="Speedometer" type="Control" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters" unique_id=87671455 node_paths=PackedStringArray("needle", "odometer", "value_label")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -71.0
+offset_right = -8.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_v2jhk")
+needle = NodePath("SpeedometerNeedle")
+odometer = NodePath("Odometer")
+value_label = NodePath("SpeedLabel")
+metadata/_custom_type_script = "uid://davgjklr8al3l"
+
+[node name="ThrottleMeter" type="TextureProgressBar" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer" unique_id=138965977]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -12.0
+offset_right = 14.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 83.0
+texture_under = ExtResource("17_p38lc")
+texture_progress = ExtResource("17_3ouj3")
+script = ExtResource("18_axf3a")
+metadata/_custom_type_script = "uid://b54mln4yw3xq3"
+
+[node name="SpeedometerBG" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer" unique_id=1528033051]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_j1hkh")
+
+[node name="SpeedometerNumBG" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer" unique_id=726205446]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_6xvtg")
+
+[node name="Odometer" type="Control" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer" unique_id=960693954 node_paths=PackedStringArray("digits")]
+clip_contents = true
+anchors_preset = 0
+offset_left = -9.0
+offset_top = 3.0
+offset_right = 10.0
+offset_bottom = 10.0
+script = ExtResource("22_p5y4a")
+digits = [NodePath("Digit1"), NodePath("Digit2"), NodePath("Digit3")]
+metadata/_custom_type_script = "uid://bryomj1visb5a"
+
+[node name="Digit1" type="Sprite2D" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer/Odometer" unique_id=619323038]
+texture_repeat = 2
+position = Vector2(3.5, 3.5)
+texture = ExtResource("22_7aj5q")
+region_enabled = true
+region_rect = Rect2(0, 0, 7, 7)
+script = ExtResource("23_762l8")
+metadata/_custom_type_script = "uid://boi5fgfq1ngos"
+
+[node name="Digit2" type="Sprite2D" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer/Odometer" unique_id=1919956532]
+texture_repeat = 2
+position = Vector2(9.5, 3.5)
+texture = ExtResource("22_7aj5q")
+region_enabled = true
+region_rect = Rect2(0, 0, 7, 7)
+script = ExtResource("23_762l8")
+metadata/_custom_type_script = "uid://boi5fgfq1ngos"
+
+[node name="Digit3" type="Sprite2D" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer/Odometer" unique_id=706054949]
+texture_repeat = 2
+position = Vector2(15.5, 3.5)
+texture = ExtResource("22_7aj5q")
+region_enabled = true
+region_rect = Rect2(0, 0, 7, 7)
+script = ExtResource("23_762l8")
+metadata/_custom_type_script = "uid://boi5fgfq1ngos"
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer" unique_id=1433971915]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = 3.0
+offset_right = 13.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "000"
+label_settings = ExtResource("4_41an5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedometerNeedle" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Speedometer" unique_id=585436663]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24.5, 24.5)
+texture = ExtResource("16_ppuil")
+
+[node name="Altimeter" type="Control" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters" unique_id=2031680119 node_paths=PackedStringArray("needle", "odometer", "value_label", "secondary_needle")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -22.0
+offset_right = -21.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_v2jhk")
+needle = NodePath("AltimeterNeedle")
+odometer = NodePath("Odometer")
+value_label = NodePath("AltitudeLabel")
+secondary_needle = NodePath("AltimeterNeedle2")
+metadata/_custom_type_script = "uid://davgjklr8al3l"
+
+[node name="AltimeterBG" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter" unique_id=1550922032]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_b55ur")
+
+[node name="AltimeterNumBG" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter" unique_id=438200665]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_v2jhk")
+
+[node name="AltitudeLabel" type="Label" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter" unique_id=1460646491]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -9.0
+offset_right = 13.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0000"
+label_settings = ExtResource("4_41an5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Odometer" type="Control" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter" unique_id=2029798460 node_paths=PackedStringArray("digits")]
+clip_contents = true
+anchors_preset = 0
+offset_left = -12.0
+offset_top = -9.0
+offset_right = 13.0
+offset_bottom = -2.0
+script = ExtResource("22_p5y4a")
+digits = [NodePath("Digit1"), NodePath("Digit2"), NodePath("Digit3"), NodePath("Digit4")]
+metadata/_custom_type_script = "uid://bryomj1visb5a"
+
+[node name="Digit1" type="Sprite2D" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter/Odometer" unique_id=1302389372]
+texture_repeat = 2
+position = Vector2(3.5, 3.5)
+texture = ExtResource("22_7aj5q")
+region_enabled = true
+region_rect = Rect2(0, 0, 7, 7)
+script = ExtResource("23_762l8")
+metadata/_custom_type_script = "uid://boi5fgfq1ngos"
+
+[node name="Digit2" type="Sprite2D" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter/Odometer" unique_id=1776912745]
+texture_repeat = 2
+position = Vector2(9.5, 3.5)
+texture = ExtResource("22_7aj5q")
+region_enabled = true
+region_rect = Rect2(0, 0, 7, 7)
+script = ExtResource("23_762l8")
+metadata/_custom_type_script = "uid://boi5fgfq1ngos"
+
+[node name="Digit3" type="Sprite2D" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter/Odometer" unique_id=1675983365]
+texture_repeat = 2
+position = Vector2(15.5, 3.5)
+texture = ExtResource("22_7aj5q")
+region_enabled = true
+region_rect = Rect2(0, 0, 7, 7)
+script = ExtResource("23_762l8")
+metadata/_custom_type_script = "uid://boi5fgfq1ngos"
+
+[node name="Digit4" type="Sprite2D" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter/Odometer" unique_id=9913678]
+texture_repeat = 2
+position = Vector2(21.5, 3.5)
+texture = ExtResource("22_7aj5q")
+region_enabled = true
+region_rect = Rect2(0, 0, 7, 7)
+script = ExtResource("23_762l8")
+metadata/_custom_type_script = "uid://boi5fgfq1ngos"
+
+[node name="AltimeterNeedle2" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter" unique_id=1838772832]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24.5, 24.5)
+texture = ExtResource("18_ppuil")
+
+[node name="AltimeterNeedle" type="TextureRect" parent="CanvasLayer/MainUI/3rdPersonHUD/Meters/Altimeter" unique_id=305680023]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -24.5
+offset_right = 24.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24.5, 24.5)
+texture = ExtResource("16_ppuil")
+
+[node name="SpeedlinesLayer" type="CanvasLayer" parent="." unique_id=1049941475]
+layer = 30
+visible = false
+
+[node name="Control" type="Control" parent="SpeedlinesLayer" unique_id=115344612]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpeedLines" type="ColorRect" parent="SpeedlinesLayer/Control" unique_id=1081036020]
+material = SubResource("ShaderMaterial_xr5n0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Aircraft" format=3 uid="uid://oo1kbwnmuqap"]
+
+[ext_resource type="PackedScene" uid="uid://u6lack2vo0nu" path="res://Entities/Aircraft/AircraftModels/F-16/F16Model.tscn" id="1_jw1ds"]
+[ext_resource type="Script" uid="uid://b5h6lyf3rfce5" path="res://Entities/Aircraft/Scripts/Aircraft.gd" id="2_qpdyo"]
+
+[resource]
+script = ExtResource("2_qpdyo")
+aircraft_model = ExtResource("1_jw1ds")
+pitch_speed = 1.0
+roll_speed = 3.0
+metadata/_custom_type_script = "uid://b5h6lyf3rfce5"

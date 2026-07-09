@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bopk46nk2blun"]
+
+[ext_resource type="Shader" uid="uid://bxoygtrxnv4k6" path="res://Common/Shaders/psx_post_process.gdshader" id="1_8pwpp"]
+[ext_resource type="PackedScene" uid="uid://b4d1ouq1w6cun" path="res://Entities/UI/game_ui.tscn" id="2_1hcjw"]
+[ext_resource type="PackedScene" uid="uid://c02c6heyr6ns0" path="res://World/world.tscn" id="3_cwkwy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xpxos"]
+shader = ExtResource("1_8pwpp")
+
+[node name="Main" type="Node" unique_id=1564712838]
+
+[node name="PSXShader" type="CanvasLayer" parent="." unique_id=823430942]
+layer = 50
+
+[node name="ColorRect" type="ColorRect" parent="PSXShader" unique_id=727155974]
+material = SubResource("ShaderMaterial_xpxos")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameUI" parent="." unique_id=1198031496 instance=ExtResource("2_1hcjw")]
+
+[node name="World" parent="." unique_id=1004396000 instance=ExtResource("3_cwkwy")]

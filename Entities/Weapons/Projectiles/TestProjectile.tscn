@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dtbasaevubx7v"]
+
+[ext_resource type="Script" uid="uid://b2lfr2hsmtua3" path="res://Entities/Weapons/Scripts/projectile.gd" id="1_2bx1k"]
+
+[sub_resource type="Gradient" id="Gradient_2bx1k"]
+offsets = PackedFloat32Array(0.007246377, 0.76086956, 1)
+colors = PackedColorArray(0.9764706, 1, 0.8, 1, 1, 0.8833333, 0.75, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kho63"]
+gradient = SubResource("Gradient_2bx1k")
+fill_from = Vector2(0.52970296, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2bx1k"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_kho63")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2bx1k"]
+material = SubResource("StandardMaterial3D_2bx1k")
+top_radius = 0.025
+bottom_radius = 0.05
+radial_segments = 4
+cap_top = false
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2bx1k"]
+
+[node name="TestProjectile" type="Area3D" unique_id=1936748506]
+collision_layer = 2
+collision_mask = 5
+monitorable = false
+script = ExtResource("1_2bx1k")
+metadata/_custom_type_script = "uid://b2lfr2hsmtua3"
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1044228314]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.75815785)
+mesh = SubResource("CylinderMesh_2bx1k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=624395748]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7569538)
+shape = SubResource("BoxShape3D_2bx1k")

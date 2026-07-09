@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://di6oy1n7kssx0"]
+
+[ext_resource type="Script" uid="uid://du353ljonyhmt" path="res://Entities/Aircraft/Scripts/aircraft_controller.gd" id="1_h6pxy"]
+[ext_resource type="Resource" uid="uid://cvasx1l7bqmw0" path="res://Entities/Aircraft/Resources/A29.tres" id="2_061yh"]
+[ext_resource type="Script" uid="uid://cdbevl5k3x7mx" path="res://Common/StateMachine/StateMachine.gd" id="3_l2mqv"]
+[ext_resource type="Script" uid="uid://bfbxb0tm0h3j7" path="res://Entities/Player/Scripts/States/PlayerIdleState.gd" id="4_mgqku"]
+[ext_resource type="Script" uid="uid://bgh61spckvjit" path="res://Entities/Player/Scripts/States/PlayerHighGState.gd" id="5_80tt4"]
+[ext_resource type="Script" uid="uid://doa3mmxcy8iqt" path="res://Entities/Player/Scripts/States/PlayerStallState.gd" id="6_tepoh"]
+[ext_resource type="Script" uid="uid://syb3n7qtp2xg" path="res://Entities/Player/Scripts/States/PlayerDeadState.gd" id="7_h03de"]
+[ext_resource type="AudioStream" uid="uid://dc6xdvr8tuvnf" path="res://Assets/Audio/SFX/Aircraft/Weapon/MG42_Loop.wav" id="8_uw7o4"]
+[ext_resource type="AudioStream" uid="uid://bheqiq0ku546j" path="res://Assets/Audio/SFX/Aircraft/Weapon/MG42_End.wav" id="12_gallu"]
+[ext_resource type="Script" uid="uid://g1tf4fx0yhay" path="res://Entities/Weapons/Scripts/weapon_controller.gd" id="12_gbla8"]
+[ext_resource type="Resource" uid="uid://casdrlqfsa40o" path="res://Entities/Weapons/Resources/TestWeapon.tres" id="13_vi0tq"]
+[ext_resource type="Script" uid="uid://do7hwtuuksqqs" path="res://Entities/Weapons/Scripts/States/WeaponIdleState.gd" id="14_c5u7s"]
+[ext_resource type="Script" uid="uid://n1hqle1e06p1" path="res://Entities/Weapons/Scripts/States/WeaponFiringState.gd" id="15_kcvdc"]
+[ext_resource type="Script" uid="uid://c8jlgghrcq4vt" path="res://Entities/Weapons/Scripts/States/WeaponEmptyState.gd" id="16_ow4hj"]
+[ext_resource type="Script" uid="uid://b857t5l0qs8wa" path="res://Entities/Player/Scripts/player_controller.gd" id="22_l80rc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tpavj"]
+size = Vector3(0.5, 0.6, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqhbc"]
+size = Vector3(2, 0.2, 0.6)
+
+[node name="Player" type="CharacterBody3D" unique_id=1257334577 node_paths=PackedStringArray("weapon_state_machine", "player_controller") groups=["Player"]]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_h6pxy")
+current_aircraft = ExtResource("2_061yh")
+weapon_state_machine = NodePath("Components/WeaponController/WeaponStateMachine")
+player_controller = NodePath("Components/PlayerController")
+metadata/_custom_type_script = "uid://du353ljonyhmt"
+
+[node name="AircraftStateMachine" type="Node" parent="." unique_id=1989959237 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_l2mqv")
+initial_state = NodePath("PlayerIdleState")
+metadata/_custom_type_script = "uid://cdbevl5k3x7mx"
+
+[node name="PlayerIdleState" type="Node" parent="AircraftStateMachine" unique_id=1335356493]
+script = ExtResource("4_mgqku")
+
+[node name="PlayerHighGState" type="Node" parent="AircraftStateMachine" unique_id=77966494]
+script = ExtResource("5_80tt4")
+
+[node name="PlayerStallState" type="Node" parent="AircraftStateMachine" unique_id=1205818642]
+script = ExtResource("6_tepoh")
+
+[node name="PlayerDeadState" type="Node" parent="AircraftStateMachine" unique_id=148589342]
+script = ExtResource("7_h03de")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="." unique_id=1214337209]
+current = true
+
+[node name="ModelParent" type="Node3D" parent="." unique_id=501619214]
+
+[node name="FuselageCollision" type="CollisionShape3D" parent="." unique_id=1626278079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14018556, 0)
+shape = SubResource("BoxShape3D_tpavj")
+
+[node name="FuselageCollision2" type="CollisionShape3D" parent="." unique_id=926485440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+shape = SubResource("BoxShape3D_bqhbc")
+
+[node name="CrosshairParent" type="Node3D" parent="." unique_id=628178520]
+
+[node name="CrosshairRaycast" type="RayCast3D" parent="CrosshairParent" unique_id=38339169]
+target_position = Vector3(0, 0, -200)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="CrosshairMarker" type="Node3D" parent="CrosshairParent" unique_id=1604364452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+
+[node name="BoresightMarker" type="Node3D" parent="CrosshairParent" unique_id=1265216337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="CameraParent" type="Node3D" parent="." unique_id=119191769]
+
+[node name="CameraHolder" type="Node3D" parent="CameraParent" unique_id=941306325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2.5)
+
+[node name="CockpitCameraHolder" type="Node3D" parent="CameraParent" unique_id=905450540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19999999, -0.3499999)
+
+[node name="DogfightCameraHolder" type="Node3D" parent="CameraParent" unique_id=1741529656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.6, 2)
+
+[node name="Components" type="Node" parent="." unique_id=1464809646]
+
+[node name="PlayerController" type="Node" parent="Components" unique_id=2037417780 node_paths=PackedStringArray("aircraft_controller", "camera_parent", "camera_holder", "player_state_machine", "crosshair_marker", "boresight_marker", "crosshair_raycast", "main_camera_holder", "cockpit_camera_holder", "dogfight_camera_holder") groups=["PlayerController"]]
+script = ExtResource("22_l80rc")
+aircraft_controller = NodePath("../..")
+camera_parent = NodePath("../../CameraParent")
+camera_holder = NodePath("../../CameraParent/CameraHolder")
+player_state_machine = NodePath("../../AircraftStateMachine")
+crosshair_marker = NodePath("../../CrosshairParent/CrosshairMarker")
+boresight_marker = NodePath("../../CrosshairParent/BoresightMarker")
+crosshair_raycast = NodePath("../../CrosshairParent/CrosshairRaycast")
+main_camera_holder = NodePath("../../CameraParent/CameraHolder")
+cockpit_camera_holder = NodePath("../../CameraParent/CockpitCameraHolder")
+dogfight_camera_holder = NodePath("../../CameraParent/DogfightCameraHolder")
+enable_dogfight_cam = false
+metadata/_custom_type_script = "uid://b857t5l0qs8wa"
+
+[node name="WeaponController" type="Node" parent="Components" unique_id=1712406981 node_paths=PackedStringArray("aircraft_controller", "gun_sound", "gun_stop_sound")]
+script = ExtResource("12_gbla8")
+current_weapon = ExtResource("13_vi0tq")
+aircraft_controller = NodePath("../..")
+gun_sound = NodePath("GunSound")
+gun_stop_sound = NodePath("GunStop")
+metadata/_custom_type_script = "uid://g1tf4fx0yhay"
+
+[node name="GunSound" type="AudioStreamPlayer" parent="Components/WeaponController" unique_id=198521066]
+stream = ExtResource("8_uw7o4")
+volume_db = -2.5
+autoplay = true
+
+[node name="GunStop" type="AudioStreamPlayer" parent="Components/WeaponController" unique_id=1221823685]
+stream = ExtResource("12_gallu")
+volume_db = -2.5
+
+[node name="WeaponStateMachine" type="Node" parent="Components/WeaponController" unique_id=1313322094 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_l2mqv")
+initial_state = NodePath("WeaponIdleState")
+metadata/_custom_type_script = "uid://cdbevl5k3x7mx"
+
+[node name="WeaponIdleState" type="Node" parent="Components/WeaponController/WeaponStateMachine" unique_id=337121894]
+script = ExtResource("14_c5u7s")
+metadata/_custom_type_script = "uid://do7hwtuuksqqs"
+
+[node name="WeaponFiringState" type="Node" parent="Components/WeaponController/WeaponStateMachine" unique_id=1815823444]
+script = ExtResource("15_kcvdc")
+metadata/_custom_type_script = "uid://n1hqle1e06p1"
+
+[node name="WeaponEmptyState" type="Node" parent="Components/WeaponController/WeaponStateMachine" unique_id=650001258]
+script = ExtResource("16_ow4hj")
+metadata/_custom_type_script = "uid://c8jlgghrcq4vt"

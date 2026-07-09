@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://1ewo4c6jicex"]
+
+[ext_resource type="Script" uid="uid://byy6fsjuw2x22" path="res://Entities/Weapons/Scripts/HomingProjectile.gd" id="1_rgyvw"]
+[ext_resource type="PackedScene" uid="uid://c3ktyydeqx4w4" path="res://Entities/Weapons/Projectiles/MissileModels/python-5-missile.gltf" id="2_t87fy"]
+[ext_resource type="Texture2D" uid="uid://dg7ia2dntl75u" path="res://Common/Particles/Art/kenney-white-smoke-texture-cc0.png" id="3_0kyw3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rgyvw"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8k26"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_0kyw3")
+texture_filter = 2
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_tlyse"]
+material = SubResource("StandardMaterial3D_m8k26")
+
+[sub_resource type="Curve" id="Curve_0kyw3"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_0kyw3"]
+offsets = PackedFloat32Array(0, 0.11165048, 1)
+colors = PackedColorArray(1, 0.79933333, 0.13999999, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[node name="HomingProjectile" type="Area3D" unique_id=1265204854 node_paths=PackedStringArray("proximity_fuse_collision")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_rgyvw")
+proximity_fuse_collision = NodePath("TargetCollision")
+metadata/_custom_type_script = "uid://byy6fsjuw2x22"
+
+[node name="blockbench_export" parent="." unique_id=1447188667 instance=ExtResource("2_t87fy")]
+
+[node name="TargetCollision" type="CollisionShape3D" parent="." unique_id=1670930397]
+shape = SubResource("SphereShape3D_rgyvw")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=486102165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.62319946)
+amount = 16
+mesh = SubResource("QuadMesh_tlyse")
+gravity = Vector3(0, 0, 0)
+angle_min = -180.0
+angle_max = 180.0
+angle_curve = SubResource("Curve_0kyw3")
+scale_amount_min = 0.9
+scale_amount_max = 1.2
+color_ramp = SubResource("Gradient_0kyw3")

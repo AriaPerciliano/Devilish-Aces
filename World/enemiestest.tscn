@@ -1,0 +1,259 @@
+[gd_scene format=3 uid="uid://xvhn4w5qansa"]
+
+[ext_resource type="Script" uid="uid://iu3sxb7bex0k" path="res://Common/AttackComponents/target_hurtbox_3d.gd" id="1_8sygj"]
+[ext_resource type="Script" uid="uid://dul8q85ixxmex" path="res://Common/AttackComponents/target_health_component.gd" id="2_kke73"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xpxos"]
+size = Vector3(5, 40, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pyyff"]
+size = Vector3(5, 40, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hcjw"]
+size = Vector3(6, 41, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1hcjw"]
+size = Vector3(8, 8, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_td74h"]
+size = Vector3(8, 8, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6qnxk"]
+size = Vector3(9, 9, 9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1hcjw"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Enemies" type="Node3D" unique_id=1417039533]
+
+[node name="Tower A" type="StaticBody3D" parent="." unique_id=840201514 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.47267, 19.375538, -173.05922)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tower A" unique_id=93670689]
+mesh = SubResource("BoxMesh_xpxos")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower A" unique_id=497966755]
+shape = SubResource("BoxShape3D_pyyff")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="Tower A" unique_id=582036531 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower A/TargetHurtbox3D" unique_id=1104573166]
+shape = SubResource("BoxShape3D_1hcjw")
+
+[node name="TargetHealthComponent" type="Node" parent="Tower A" unique_id=868979962]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="Tower B" type="StaticBody3D" parent="." unique_id=1976080726 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.83975, 19.375538, -168.35432)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tower B" unique_id=1250969795]
+mesh = SubResource("BoxMesh_xpxos")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower B" unique_id=56297368]
+shape = SubResource("BoxShape3D_pyyff")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="Tower B" unique_id=1255512764 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tower B/TargetHurtbox3D" unique_id=1819645821]
+shape = SubResource("BoxShape3D_1hcjw")
+
+[node name="TargetHealthComponent" type="Node" parent="Tower B" unique_id=785606843]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="GRND" type="StaticBody3D" parent="." unique_id=239936483 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.82639, 3.1480598, -58.59433)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GRND" unique_id=969681684]
+mesh = SubResource("BoxMesh_1hcjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND" unique_id=1979330210]
+shape = SubResource("BoxShape3D_td74h")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="GRND" unique_id=1576147029 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND/TargetHurtbox3D" unique_id=1184615195]
+shape = SubResource("BoxShape3D_6qnxk")
+
+[node name="TargetHealthComponent" type="Node" parent="GRND" unique_id=1907167521]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="GRND2" type="StaticBody3D" parent="." unique_id=1386672121 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.65279, 3.1480598, -138.11897)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GRND2" unique_id=204022127]
+mesh = SubResource("BoxMesh_1hcjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND2" unique_id=480042012]
+shape = SubResource("BoxShape3D_td74h")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="GRND2" unique_id=392479422 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND2/TargetHurtbox3D" unique_id=1163416933]
+shape = SubResource("BoxShape3D_6qnxk")
+
+[node name="TargetHealthComponent" type="Node" parent="GRND2" unique_id=910533144]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="GRND3" type="StaticBody3D" parent="." unique_id=572053411 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -148.88757, 3.1480598, -215.05931)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GRND3" unique_id=1335763547]
+mesh = SubResource("BoxMesh_1hcjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND3" unique_id=1354850051]
+shape = SubResource("BoxShape3D_td74h")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="GRND3" unique_id=1631127970 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND3/TargetHurtbox3D" unique_id=992271394]
+shape = SubResource("BoxShape3D_6qnxk")
+
+[node name="TargetHealthComponent" type="Node" parent="GRND3" unique_id=200826163]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="GRND4" type="StaticBody3D" parent="." unique_id=1941071093 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -271.8758, 3.1480598, -146.54843)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GRND4" unique_id=1902543323]
+mesh = SubResource("BoxMesh_1hcjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND4" unique_id=1080736635]
+shape = SubResource("BoxShape3D_td74h")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="GRND4" unique_id=1169319813 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND4/TargetHurtbox3D" unique_id=2146051951]
+shape = SubResource("BoxShape3D_6qnxk")
+
+[node name="TargetHealthComponent" type="Node" parent="GRND4" unique_id=1484946188]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="GRND5" type="StaticBody3D" parent="." unique_id=92429153 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.148, -245.603)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GRND5" unique_id=395327143]
+mesh = SubResource("BoxMesh_1hcjw")
+surface_material_override/0 = SubResource("StandardMaterial3D_1hcjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND5" unique_id=1034050253]
+shape = SubResource("BoxShape3D_td74h")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="GRND5" unique_id=2017550442 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND5/TargetHurtbox3D" unique_id=1354440577]
+shape = SubResource("BoxShape3D_6qnxk")
+
+[node name="TargetHealthComponent" type="Node" parent="GRND5" unique_id=730711452]
+script = ExtResource("2_kke73")
+max_health = 20000.0
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="GRND6" type="StaticBody3D" parent="." unique_id=1244789670 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.612045, 3.1480598, -237.73648)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GRND6" unique_id=786091465]
+mesh = SubResource("BoxMesh_1hcjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND6" unique_id=1374135315]
+shape = SubResource("BoxShape3D_td74h")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="GRND6" unique_id=301273587 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND6/TargetHurtbox3D" unique_id=869940934]
+shape = SubResource("BoxShape3D_6qnxk")
+
+[node name="TargetHealthComponent" type="Node" parent="GRND6" unique_id=1671954121]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="GRND7" type="StaticBody3D" parent="." unique_id=1419964786 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.657455, 3.1480598, -116.71492)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GRND7" unique_id=1659990225]
+mesh = SubResource("BoxMesh_1hcjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND7" unique_id=760770027]
+shape = SubResource("BoxShape3D_td74h")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="GRND7" unique_id=388530197 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND7/TargetHurtbox3D" unique_id=412449093]
+shape = SubResource("BoxShape3D_6qnxk")
+
+[node name="TargetHealthComponent" type="Node" parent="GRND7" unique_id=670812732]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"
+
+[node name="GRND8" type="StaticBody3D" parent="." unique_id=1722169638 groups=["Target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -231.82521, 3.1480598, -85.71098)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GRND8" unique_id=1335533212]
+mesh = SubResource("BoxMesh_1hcjw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND8" unique_id=104659419]
+shape = SubResource("BoxShape3D_td74h")
+
+[node name="TargetHurtbox3D" type="Area3D" parent="GRND8" unique_id=1566330583 node_paths=PackedStringArray("health_component")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_8sygj")
+health_component = NodePath("../TargetHealthComponent")
+metadata/_custom_type_script = "uid://iu3sxb7bex0k"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GRND8/TargetHurtbox3D" unique_id=59891805]
+shape = SubResource("BoxShape3D_6qnxk")
+
+[node name="TargetHealthComponent" type="Node" parent="GRND8" unique_id=347531816]
+script = ExtResource("2_kke73")
+metadata/_custom_type_script = "uid://dul8q85ixxmex"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Aircraft" format=3 uid="uid://cvasx1l7bqmw0"]
+
+[ext_resource type="PackedScene" uid="uid://cyh0erdejmkf5" path="res://Entities/Aircraft/AircraftModels/A29/A29Model.tscn" id="1_doql1"]
+[ext_resource type="Script" uid="uid://b5h6lyf3rfce5" path="res://Entities/Aircraft/Scripts/Aircraft.gd" id="1_l8xo5"]
+
+[resource]
+script = ExtResource("1_l8xo5")
+aircraft_model = ExtResource("1_doql1")
+metadata/_custom_type_script = "uid://b5h6lyf3rfce5"
